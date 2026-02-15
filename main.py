@@ -6,27 +6,41 @@ from datetime import datetime
 import json
 
 # Config
-SYMBOL = "XAUUSDT"          # MEXC uses this for Tether Gold perpetual
+SYMBOL = "XAUUSDT"          # Binance perpetual gold
 TIMEFRAME = "15m"
 LIMIT = 60
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 try:
-    # Fetch data from MEXC (public OHLCV should work)
-    exchange = ccxt.mexc()
-    print(f"Loading markets for {exchange.id}...")
-    exchange.load_markets()  # Ensure symbol exists
-    if SYMBOL not in exchange.markets:
-        raise ValueError(f"Symbol {SYMBOL} not found on {exchange.id}")
+    print("Trying Binance data subdomain first...")
+    exchange = ccxt.binance({
+        'urls': {
+            'api': {
+                'public': 'https://data.binance.com/api/v3',  # Data subdomain for historical/public data
+                'private': 'https://api.binance.com/api/v3',
+            }
+        },
+        'enableRateLimit': True,
+        'options': {'defaultType': 'future'}  # For perpetuals
+    })
 
-    print(f"Fetching OHLCV for {SYMBOL} {TIMEFRAME}...")
+    print(f"Loading markets on {exchange.id}...")
+    markets = exchange.load_markets()
+    if SYMBOL not in markets:
+        print(f"Symbol {SYMBOL} not found on Binance. Falling back to OKX...")
+        exchange = ccxt.okx({'enableRateLimit': True, 'options': {'defaultType': 'swap'}})
+        markets = exchange.load_markets()
+        if SYMBOL not in markets:
+            raise ValueError(f"Symbol {SYMBOL} not found on fallback exchange {exchange.id}")
+
+    print(f"Fetching OHLCV for {SYMBOL} {TIMEFRAME} on {exchange.id}...")
     ohlcv = exchange.fetch_ohlcv(SYMBOL, TIMEFRAME, limit=LIMIT)
     df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 
     data_str = df.to_string(index=False)
     current_close = df['close'].iloc[-1]
-    print(f"Current close: {current_close:.2f} | Data rows: {len(df)}")
+    print(f"Success! Current close: {current_close:.2f} | Rows fetched: {len(df)}")
 
     prompt = f"""You are a senior ICT/SMC trader specializing in XAUUSD.
 Analyze this 15m chart data for the next moves:
@@ -60,7 +74,7 @@ Output ONLY valid JSON:
     )
 
     ai = json.loads(response.choices[0].message.content)
-    print("DeepSeek response:", ai)
+    print("DeepSeek response received:", ai)
 
     # New row
     new_row = {
@@ -80,8 +94,8 @@ Output ONLY valid JSON:
     df_signals = pd.concat([df_signals, pd.DataFrame([new_row])], ignore_index=True).tail(500)
     df_signals.to_csv("ai_signals.csv", index=False)
 
-    print("Updated:", new_row)
+    print("CSV updated successfully:", new_row)
 
 except Exception as e:
-    print("Error occurred:", str(e))
-    raise  # Re-raise to show full traceback in Actions log
+    print("Error occurred during execution:", str(e))
+    raise  # Show full traceback in GitHub Actions log
