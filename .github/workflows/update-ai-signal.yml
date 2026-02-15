@@ -3,7 +3,7 @@ name: Update DeepSeek AI Signal
 on:
   schedule:
     - cron: '0 * * * *'          # Every hour on the hour (UTC)
-  workflow_dispatch:             # Manual run option
+  workflow_dispatch:             # Allows manual run
 
 jobs:
   update:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install ccxt pandas openai
+          pip install yfinance pandas openai
 
       - name: Run AI analysis
         env:
