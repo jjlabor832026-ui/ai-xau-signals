@@ -4,30 +4,50 @@ from openai import OpenAI
 import os
 from datetime import datetime
 import json
+import time
 
 # Config
-SYMBOL = "GC=F"  # Gold futures (tracks XAUUSD closely)
-TIMEFRAME = "15m"
+SYMBOL = "GC=F"                  # Gold Futures (XAUUSD proxy)
+INTERVAL = "15m"
+CANDLE_LIMIT = 60
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
-try:
+def fetch_gold_data():
     print("Fetching gold data from Yahoo Finance...")
-    df = yf.download(SYMBOL, period="1d", interval=TIMEFRAME)
-    df = df[['Open', 'High', 'Low', 'Close', 'Volume']].reset_index()
-    df.columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-    df = df.tail(60)  # Limit to last 60 candles
+    ticker = yf.Ticker(SYMBOL)
+    
+    # Try longer periods first to handle weekends/non-trading hours
+    periods = ["60d", "30d", "7d", "5d"]
+    for attempt in range(3):
+        for period in periods:
+            try:
+                df = ticker.history(period=period, interval=INTERVAL, prepost=False, actions=False)
+                if not df.empty and len(df) >= CANDLE_LIMIT:
+                    df = df[['Open', 'High', 'Low', 'Close', 'Volume']].reset_index()
+                    df.columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+                    df = df.tail(CANDLE_LIMIT)  # Last 60 candles (most recent)
+                    latest_time = df['timestamp'].iloc[-1]
+                    print(f"Success on attempt {attempt+1}, period {period}! Rows: {len(df)}, Latest candle: {latest_time}, Close: {df['close'].iloc[-1]:.2f}")
+                    if (datetime.now() - latest_time).days > 1:
+                        print("Note: Using historical data (market may be closed - weekend/non-trading hours)")
+                    return df
+                time.sleep(3)  # Delay to avoid rate limit
+            except Exception as e:
+                print(f"Attempt {attempt+1}, period {period} failed: {str(e)}")
+                time.sleep(5)
+    
+    raise ValueError("Failed to fetch enough data after retries. Market closed or Yahoo issue.")
 
-    if len(df) < 20:
-        raise ValueError("Not enough data")
-
+try:
+    df = fetch_gold_data()
+    
     data_str = df.to_string(index=False)
     current_close = df['close'].iloc[-1]
-    print(f"Success! Close: {current_close:.2f} | Rows: {len(df)}")
 
     prompt = f"""You are a senior ICT/SMC trader specializing in XAUUSD.
-Analyze this 15m chart data for the next moves:
+Analyze this 15m chart data for the next moves (last {len(df)} candles):
 {data_str}
-Current close ~{current_close:.2f}. Think step-by-step:
+Current/latest close ~{current_close:.2f}. Think step-by-step:
 1. Swings, order blocks, breakers.
 2. FVGs, liquidity sweeps, displacement.
 3. Structure, volume, momentum.
