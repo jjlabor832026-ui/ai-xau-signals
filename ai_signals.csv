@@ -1,0 +1,2 @@
+timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_term_action,long_term_tp,long_term_sl,long_term_reason,confidence
+2026-02-15 00:00:00,hold,0.0,0.0,Initializing AI,hold,0.0,0.0,Initializing AI,0
