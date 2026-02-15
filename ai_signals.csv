@@ -8,3 +8,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-15 19:16:04,buy,5060.0,5040.0,Buy on support retest in bullish trend.,buy,5080.0,5030.0,Bullish structure with higher highs targets continuation.,75
 2026-02-15 20:56:39,buy,5055.0,5042.0,Price at key support with bullish trend continuation expected.,buy,5065.0,5040.0,"Bullish structure with higher lows, targeting previous high resistance.",75
 2026-02-15 21:52:08,sell,5038.0,5055.0,"Bearish momentum and displacement with last candle closing at low, suggesting further downside.",sell,5020.0,5065.0,Potential trend reversal from recent highs with structure targeting key support levels.,70
+2026-02-15 22:58:21,sell,5035.0,5055.0,Bearish rejection at resistance with candle closing at support.,buy,5075.0,5030.0,Uptrend structure intact with higher lows expected after pullback.,75
