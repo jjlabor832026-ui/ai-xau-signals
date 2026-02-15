@@ -12,7 +12,7 @@ LIMIT = 60
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 # Fetch data
-exchange = ccxt.gateio()
+exchange = ccxt.coinsph()
 ohlcv = exchange.fetch_ohlcv(SYMBOL, TIMEFRAME, limit=LIMIT)
 df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
