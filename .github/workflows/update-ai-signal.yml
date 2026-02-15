@@ -1,0 +1,31 @@
+name: Update DeepSeek AI Signal
+
+on:
+  schedule:
+    - cron: '0 * * * *'          # Every hour on the hour (UTC)
+  workflow_dispatch:             # Manual run option
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install ccxt pandas openai
+
+      - name: Run AI analysis
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: python main.py
+
+      - name: Commit & push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'DeepSeek AI signal update'
