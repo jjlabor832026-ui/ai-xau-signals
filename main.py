@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 import json
 import time
+from datetime import timezone  # NEW: for tz-aware now
 
 # Config
 SYMBOL = "GC=F"                  # Gold Futures (XAUUSD proxy)
@@ -16,22 +17,29 @@ def fetch_gold_data():
     print("Fetching gold data from Yahoo Finance...")
     ticker = yf.Ticker(SYMBOL)
     
-    # Try longer periods first to handle weekends/non-trading hours
     periods = ["60d", "30d", "7d", "5d"]
     for attempt in range(3):
         for period in periods:
             try:
                 df = ticker.history(period=period, interval=INTERVAL, prepost=False, actions=False)
                 if not df.empty and len(df) >= CANDLE_LIMIT:
+                    # IMPORTANT FIX: Make timestamps tz-naive to avoid subtraction errors
+                    df.index = df.index.tz_localize(None)  # Remove timezone info
+                    
                     df = df[['Open', 'High', 'Low', 'Close', 'Volume']].reset_index()
                     df.columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-                    df = df.tail(CANDLE_LIMIT)  # Last 60 candles (most recent)
+                    df = df.tail(CANDLE_LIMIT)
+                    
                     latest_time = df['timestamp'].iloc[-1]
-                    print(f"Success on attempt {attempt+1}, period {period}! Rows: {len(df)}, Latest candle: {latest_time}, Close: {df['close'].iloc[-1]:.2f}")
-                    if (datetime.now() - latest_time).days > 1:
-                        print("Note: Using historical data (market may be closed - weekend/non-trading hours)")
+                    now = datetime.now(timezone.utc)  # tz-aware for comparison if needed
+                    # Optional: Convert latest_time to tz-aware UTC for accurate delta
+                    latest_time_utc = latest_time.replace(tzinfo=timezone.utc) if latest_time.tzinfo is None else latest_time.astimezone(timezone.utc)
+                    
+                    print(f"Success on attempt {attempt+1}, period {period}! Rows: {len(df)}, Latest: {latest_time}, Close: {df['close'].iloc[-1]:.2f}")
+                    if (now - latest_time_utc).days > 1:
+                        print("Note: Using historical data (market closed - weekend/holiday)")
                     return df
-                time.sleep(3)  # Delay to avoid rate limit
+                time.sleep(3)
             except Exception as e:
                 print(f"Attempt {attempt+1}, period {period} failed: {str(e)}")
                 time.sleep(5)
