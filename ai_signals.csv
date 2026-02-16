@@ -1,5 +1,4 @@
 timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_term_action,long_term_tp,long_term_sl,long_term_reason,confidence
-2026-02-15 00:00:00,hold,0.0,0.0,Initializing AI,hold,0.0,0.0,Initializing AI,0
 2026-02-15 12:53:57,buy,5055.0,5040.0,Buying at support after recent pullback in uptrend.,buy,5070.0,5030.0,Uptrend structure intact with potential to test highs.,70
 2026-02-15 13:58:17,buy,5055.0,5040.0,"Price at support in uptrend, potential bounce.",buy,5075.0,5035.0,"Uptrend intact, targeting previous highs.",75
 2026-02-15 14:59:56,sell,5040.0,5060.0,"Recent bearish close and momentum after peak, targeting support break.",buy,5070.0,5030.0,"Uptrend from lows suggests bullish bias, buying on pullback if support holds.",70
