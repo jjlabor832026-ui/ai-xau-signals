@@ -11,3 +11,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-15 22:58:21,sell,5035.0,5055.0,Bearish rejection at resistance with candle closing at support.,buy,5075.0,5030.0,Uptrend structure intact with higher lows expected after pullback.,75
 2026-02-15 23:57:15,buy,5050.0,5035.0,Price near support with potential bounce from 5036 low,buy,5060.0,5030.0,Uptrend likely to resume after pullback to order block,60
 2026-02-16 00:31:37,buy,5050.0,5030.0,"Price consolidating near key support with low volume, expecting a bounce.",buy,5065.0,5020.0,"Uptrend intact with pullback to support, targeting previous high.",65
+2026-02-16 00:56:30,sell,5025.0,5040.0,Bearish momentum with lower highs and lows from recent peak.,buy,5055.0,5020.0,Uptrend correction likely to find support and resume higher.,65
