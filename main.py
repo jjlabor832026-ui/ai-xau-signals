@@ -7,13 +7,12 @@ import json
 import time
 from datetime import timezone
 
-# ── CONFIG ─────────────────────────────────────────────────────
+# Config
 SYMBOL = "GC=F"                  # Gold Futures (XAUUSD proxy)
 INTERVAL = "15m"
 CANDLE_LIMIT = 60
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 CSV_FILENAME = "ai_signals.csv"
-# ──────────────────────────────────────────────────────────────
 
 def fetch_gold_data():
     print("Fetching gold data from Yahoo Finance...")
@@ -25,8 +24,7 @@ def fetch_gold_data():
             try:
                 df = ticker.history(period=period, interval=INTERVAL, prepost=False, actions=False)
                 if not df.empty and len(df) >= CANDLE_LIMIT:
-                    df.index = df.index.tz_localize(None)  # Remove timezone info
-                    
+                    df.index = df.index.tz_localize(None)
                     df = df[['Open', 'High', 'Low', 'Close', 'Volume']].reset_index()
                     df.columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
                     df = df.tail(CANDLE_LIMIT)
@@ -35,20 +33,19 @@ def fetch_gold_data():
                     now = datetime.now(timezone.utc)
                     latest_time_utc = latest_time.replace(tzinfo=timezone.utc) if latest_time.tzinfo is None else latest_time.astimezone(timezone.utc)
                     
-                    print(f"Success on attempt {attempt+1}, period {period}! Rows: {len(df)}, Latest: {latest_time}, Close: {df['close'].iloc[-1]:.2f}")
+                    print(f"Success! Rows: {len(df)}, Latest: {latest_time}, Close: {df['close'].iloc[-1]:.2f}")
                     if (now - latest_time_utc).days > 1:
-                        print("Note: Using historical data (market closed - weekend/holiday)")
+                        print("Note: Using historical data (market closed)")
                     return df
                 time.sleep(3)
             except Exception as e:
                 print(f"Attempt {attempt+1}, period {period} failed: {str(e)}")
                 time.sleep(5)
     
-    raise ValueError("Failed to fetch enough data after retries. Market closed or Yahoo issue.")
+    raise ValueError("Failed to fetch enough data.")
 
 try:
     df = fetch_gold_data()
-    
     data_str = df.to_string(index=False)
     current_close = df['close'].iloc[-1]
 
@@ -60,22 +57,22 @@ Here is the latest 15m chart data (last {len(df)} candles):
 
 {data_str}
 
-Perform a deep, professional multi-timeframe analysis using:
+Perform deep multi-timeframe analysis using:
 - Market Structure (BOS, CHOCH, HH/HL, LH/LL)
 - Order Blocks, Breaker Blocks, Mitigation Blocks
 - Fair Value Gaps (FVGs) and Imbalances
 - Liquidity Sweeps, Judas Swings, Stop Hunts
 - Displacement and strong impulsive moves
-- Key Support & Resistance zones (major levels)
+- Key Support & Resistance zones
 - Volume confirmation and momentum
 
 Rules:
-- Be extremely selective and honest — only give signals with high conviction (minimum 70%)
+- Be extremely selective — only high-conviction signals (minimum 70%)
 - Prioritize London/NY session behavior if active
 - Short-term = next 15–60 minutes
 - Long-term = next 2–8 hours
 
-Then provide realistic price projections at these exact time horizons:
+Then provide realistic price projections at these exact horizons:
 - After 15 minutes
 - After 1 hour
 - After 4 hours
@@ -126,7 +123,6 @@ Output ONLY valid JSON — nothing else:
         "confidence": ai["confidence"]
     }
 
-    # Load existing CSV or create new
     if os.path.exists(CSV_FILENAME):
         df_signals = pd.read_csv(CSV_FILENAME)
     else:
