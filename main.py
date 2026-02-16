@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 import json
 import time
-from datetime import timezone  # NEW: for tz-aware now
+from datetime import timezone
 
 # Config
 SYMBOL = "GC=F"                  # Gold Futures (XAUUSD proxy)
@@ -23,7 +23,6 @@ def fetch_gold_data():
             try:
                 df = ticker.history(period=period, interval=INTERVAL, prepost=False, actions=False)
                 if not df.empty and len(df) >= CANDLE_LIMIT:
-                    # IMPORTANT FIX: Make timestamps tz-naive to avoid subtraction errors
                     df.index = df.index.tz_localize(None)  # Remove timezone info
                     
                     df = df[['Open', 'High', 'Low', 'Close', 'Volume']].reset_index()
@@ -31,8 +30,7 @@ def fetch_gold_data():
                     df = df.tail(CANDLE_LIMIT)
                     
                     latest_time = df['timestamp'].iloc[-1]
-                    now = datetime.now(timezone.utc)  # tz-aware for comparison if needed
-                    # Optional: Convert latest_time to tz-aware UTC for accurate delta
+                    now = datetime.now(timezone.utc)
                     latest_time_utc = latest_time.replace(tzinfo=timezone.utc) if latest_time.tzinfo is None else latest_time.astimezone(timezone.utc)
                     
                     print(f"Success on attempt {attempt+1}, period {period}! Rows: {len(df)}, Latest: {latest_time}, Close: {df['close'].iloc[-1]:.2f}")
@@ -52,25 +50,49 @@ try:
     data_str = df.to_string(index=False)
     current_close = df['close'].iloc[-1]
 
-    prompt = f"""You are a senior ICT/SMC trader specializing in XAUUSD.
-Analyze this 15m chart data for the next moves (last {len(df)} candles):
+    prompt = f"""You are a world-class ICT/SMC institutional trader with 15+ years experience trading XAUUSD.
+
+Current price: {current_close:.2f}
+
+Here is the latest 15m chart data (last {len(df)} candles):
+
 {data_str}
-Current/latest close ~{current_close:.2f}. Think step-by-step:
-1. Swings, order blocks, breakers.
-2. FVGs, liquidity sweeps, displacement.
-3. Structure, volume, momentum.
-4. Short-term (next 15-30 min): buy/sell/hold + quick TP/SL (realistic, in points/USD).
-5. Long-term (next 1-2 hours): buy/sell/hold + TP/SL based on structure.
-Output ONLY valid JSON:
+
+Perform a deep, professional multi-timeframe analysis using:
+- Market Structure (BOS, CHOCH, HH/HL, LH/LL)
+- Order Blocks, Breaker Blocks, Mitigation Blocks
+- Fair Value Gaps (FVGs) and Imbalances
+- Liquidity Sweeps, Judas Swings, Stop Hunts
+- Displacement and strong impulsive moves
+- Key Support & Resistance zones (major levels)
+- Volume confirmation and momentum
+
+Rules:
+- Be extremely selective and honest — only give signals with high conviction (minimum 70%)
+- Prioritize London/NY session behavior if active
+- Short-term = next 15–60 minutes
+- Long-term = next 2–8 hours
+
+Then provide realistic price projections at these exact time horizons:
+- After 15 minutes
+- After 1 hour
+- After 4 hours
+- After 1 day
+
+Output ONLY valid JSON — nothing else:
 {{
   "short_term_action": "buy" or "sell" or "hold",
   "short_term_tp": float,
   "short_term_sl": float,
-  "short_term_reason": "short sentence",
+  "short_term_reason": "short powerful sentence",
   "long_term_action": "buy" or "sell" or "hold",
   "long_term_tp": float,
   "long_term_sl": float,
-  "long_term_reason": "short sentence",
+  "long_term_reason": "short powerful sentence",
+  "price_after_15m": float,
+  "price_after_1h": float,
+  "price_after_4h": float,
+  "price_after_1d": float,
   "confidence": 0-100
 }}
 """
@@ -95,6 +117,10 @@ Output ONLY valid JSON:
         "long_term_tp": ai["long_term_tp"],
         "long_term_sl": ai["long_term_sl"],
         "long_term_reason": ai["long_term_reason"][:120],
+        "price_after_15m": ai["price_after_15m"],
+        "price_after_1h": ai["price_after_1h"],
+        "price_after_4h": ai["price_after_4h"],
+        "price_after_1d": ai["price_after_1d"],
         "confidence": ai["confidence"]
     }
 
