@@ -7,11 +7,13 @@ import json
 import time
 from datetime import timezone
 
-# Config
+# ── CONFIG ─────────────────────────────────────────────────────
 SYMBOL = "GC=F"                  # Gold Futures (XAUUSD proxy)
 INTERVAL = "15m"
 CANDLE_LIMIT = 60
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+CSV_FILENAME = "ai_signals.csv"
+# ──────────────────────────────────────────────────────────────
 
 def fetch_gold_data():
     print("Fetching gold data from Yahoo Finance...")
@@ -108,7 +110,7 @@ Output ONLY valid JSON — nothing else:
     ai = json.loads(response.choices[0].message.content)
 
     new_row = {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
         "short_term_action": ai["short_term_action"],
         "short_term_tp": ai["short_term_tp"],
         "short_term_sl": ai["short_term_sl"],
@@ -124,11 +126,16 @@ Output ONLY valid JSON — nothing else:
         "confidence": ai["confidence"]
     }
 
-    df_signals = pd.read_csv("ai_signals.csv")
-    df_signals = pd.concat([df_signals, pd.DataFrame([new_row])], ignore_index=True).tail(500)
-    df_signals.to_csv("ai_signals.csv", index=False)
+    # Load existing CSV or create new
+    if os.path.exists(CSV_FILENAME):
+        df_signals = pd.read_csv(CSV_FILENAME)
+    else:
+        df_signals = pd.DataFrame(columns=new_row.keys())
 
-    print("Updated:", new_row)
+    df_signals = pd.concat([df_signals, pd.DataFrame([new_row])], ignore_index=True).tail(500)
+    df_signals.to_csv(CSV_FILENAME, index=False)
+
+    print("AI Signal updated successfully:", new_row)
 
 except Exception as e:
     print("Error:", str(e))
