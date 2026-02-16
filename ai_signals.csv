@@ -14,3 +14,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-16 00:56:30,sell,5025.0,5040.0,Bearish momentum with lower highs and lows from recent peak.,buy,5055.0,5020.0,Uptrend correction likely to find support and resume higher.,65
 2026-02-16 01:27:22,hold,5050.0,5040.0,"Consolidation near key support at 5040 with low volume, awaiting clearer directional signal.",buy,5065.0,5035.0,"Overall bullish structure from lows, with support at 5040 likely to hold for a bounce towards resistance.",70
 2026-02-16 01:52:35,sell,5040.0,5055.0,Price rejected near 5050 resistance with low volume indicating weak momentum.,buy,5065.0,5035.0,"Uptrend intact with higher lows, target previous high for continuation.",70
+2026-02-16 03:47:14,sell,5005.0,5020.0,Bearish momentum near support break expected.,sell,4990.0,5025.0,Downtrend continuation towards key support.,70
