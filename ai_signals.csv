@@ -93,3 +93,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-21 13:56:46,sell,5070.0,5095.0,Sharp drop after liquidity sweep at 5131.00 signals bearish continuation.,buy,5120.0,5060.0,Uptrend intact; correction to 5080 support offers high-probability buying opportunity.,75,5075.0,5080.0,5100.0,5130.0
 2026-02-21 14:57:19,sell,5065.0,5095.0,Bearish breakdown after liquidity sweep at 5131,buy,5130.0,5070.0,Uptrend intact post-correction to key support,75,5075.0,5065.0,5110.0,5150.0
 2026-02-21 15:53:03,sell,5065.0,5100.0,Bearish displacement with BOS below key support.,sell,5050.0,5120.0,Market structure reversal confirmed by impulsive move.,75,5079.0,5065.0,5050.0,5040.0
+2026-02-21 17:01:02,sell,5060.0,5100.0,Bearish breakout after liquidity sweep at 5131 with strong selling momentum.,sell,5040.0,5120.0,Break of market structure suggesting potential trend reversal with NY session confirmation.,75,5075.0,5065.0,5070.0,5090.0
