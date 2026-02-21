@@ -86,3 +86,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-21 04:55:11,buy,5140.0,5120.0,Strong impulsive move to new highs with volume confirmation.,buy,5170.0,5100.0,Uptrend confirmed by liquidity sweep and bullish market structure.,75,5132.5,5145.0,5170.0,5220.0
 2026-02-21 07:10:25,sell,5115.0,5135.0,"Price testing key resistance, expecting pullback.",buy,5150.0,5090.0,"Uptrend intact with higher highs, target continuation.",75,5125.0,5135.0,5150.0,5180.0
 2026-02-21 07:58:26,buy,5140.0,5120.0,Break of structure at 5131.00 with volume surge confirms bullish impulse.,buy,5160.0,5100.0,Established uptrend with HH/HL pattern targeting liquidity above 5150.00.,85,5135.0,5145.0,5170.0,5220.0
+2026-02-21 09:03:20,sell,5065.0,5095.0,"Sharp bearish displacement at NY session, targeting liquidity below key support.",buy,5120.0,5050.0,Uptrend intact; buy the dip at Fibonacci support for continuation.,75,5075.0,5065.0,5090.0,5110.0
