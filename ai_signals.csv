@@ -101,3 +101,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-21 21:49:55,sell,5070.0,5095.0,Bearish engulfing candle after sweeping highs at 5131.,sell,5050.0,5120.0,Liquidity sweep and displacement signal trend reversal.,80,5075.0,5060.0,5040.0,5020.0
 2026-02-21 22:56:57,buy,5095.0,5070.0,"Price at key support after sharp drop, bounce likely.",buy,5130.0,5050.0,"Uptrend intact, pullback to institutional support.",75,5085.0,5095.0,5120.0,5150.0
 2026-02-21 23:50:08,buy,5100.0,5075.0,Price at 50% retracement support with bullish trend intact,buy,5150.0,5060.0,Uptrend holding with correction likely complete,75,5085.0,5095.0,5120.0,5150.0
+2026-02-22 05:15:09,buy,5100.0,5060.0,Breakout above 5040 resistance with impulsive displacement signaling continuation.,buy,5150.0,5035.0,Sustained uptrend from liquidity sweep and fair value gap supporting bullish momentum.,75,5085.0,5095.0,5120.0,5150.0
