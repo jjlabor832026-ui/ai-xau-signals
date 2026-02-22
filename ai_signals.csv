@@ -107,3 +107,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-22 09:50:09,hold,5090.0,5070.0,Price at new high after impulsive move; awaiting pullback for confirmation.,buy,5120.0,5040.0,Uptrend confirmed with break of structure and higher highs.,70,5085.0,5090.0,5110.0,5130.0
 2026-02-22 10:57:11,sell,5070.0,5100.0,Bearish displacement after liquidity sweep above 5130.,buy,5150.0,5050.0,"Overall uptrend intact, buying at value area after correction.",75,5085.0,5070.0,5100.0,5150.0
 2026-02-22 11:46:36,sell,5070.0,5095.0,"Bearish engulfing candle sweeps liquidity, targeting support.",buy,5120.0,5050.0,"Uptrend intact, buy the dip at key support.",70,5075.0,5065.0,5050.0,5120.0
+2026-02-22 12:01:53,buy,5100.0,5075.0,Pullback to key Fibonacci support after liquidity sweep.,buy,5150.0,5050.0,Uptrend intact with strong impulsive move from 5005.50.,80,5085.0,5095.0,5115.0,5150.0
