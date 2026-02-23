@@ -120,3 +120,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-22 22:58:29,buy,5100.0,5075.0,"Pullback to FVG after liquidity sweep, expecting bullish continuation.",buy,5130.0,5060.0,Strong impulsive move from lows targets higher liquidity zones.,75,5085.0,5100.0,5120.0,5140.0
 2026-02-22 23:55:07,buy,5190.0,5165.0,Bullish breakout above 5181 high with volume surge.,buy,5220.0,5150.0,Strong uptrend with HH/HL and liquidity sweep below.,80,5185.0,5200.0,5220.0,5250.0
 2026-02-23 00:13:50,sell,5150.0,5195.0,Bearish rejection from 5194 resistance with high-volume drop.,buy,5220.0,5140.0,Uptrend intact; buy on pullback to key support at 5150.,80,5160.0,5150.0,5175.0,5220.0
+2026-02-23 05:44:07,hold,5185.0,5170.0,"Consolidation after gap up, awaiting breakout confirmation.",buy,5220.0,5150.0,"Uptrend intact with impulsive move and gap, targeting higher highs.",75,5179.0,5188.0,5210.0,5250.0
