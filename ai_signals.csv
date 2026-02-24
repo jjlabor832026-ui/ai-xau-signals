@@ -142,3 +142,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-24 18:13:37,sell,5175.0,5190.0,Resistance at 5185 with low volume signals pullback.,buy,5220.0,5150.0,Impulsive recovery from 5109.50 suggests bullish continuation.,75,5183.5,5178.0,5195.0,5210.0
 2026-02-24 19:57:33,hold,5180.0,5165.0,"Range-bound consolidation with low volume, awaiting clear breakout.",sell,5150.0,5185.0,"Downtrend intact with lower high at 5188.50, targeting previous liquidity zone.",75,5170.5,5175.0,5155.0,5140.0
 2026-02-24 21:54:44,buy,5178.0,5160.0,Price at key support with potential liquidity sweep reversal.,hold,5195.0,5150.0,"At 61.8% Fibonacci retracement, awaiting break of structure.",70,5171.0,5176.0,5188.0,5200.0
+2026-02-24 23:06:51,sell,5150.0,5170.0,Bearish displacement below key support with volume drying up.,sell,5120.0,5180.0,"Major resistance hold, bearish market structure intact.",80,5158.0,5150.0,5130.0,5140.0
