@@ -150,3 +150,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-25 08:05:40,sell,5191.5,5208.0,Bearish LH/LL structure with declining momentum.,buy,5223.7,5180.0,"Bullish trend intact, pullback to key support zone.",75,5195.0,5192.0,5210.0,5230.0
 2026-02-25 10:44:29,sell,5180.0,5205.0,Lower high rejection with volume sweep below 5190.,buy,5210.0,5160.0,"Impulse up intact, buying on correction at key support.",75,5190.0,5185.0,5180.0,5200.0
 2026-02-25 11:13:32,sell,5185.0,5200.0,Bearish momentum with high-volume rejection at support.,sell,5170.0,5220.0,Sustained downtrend with liquidity sweep and order block breakdown.,75,5190.0,5185.0,5180.0,5170.0
+2026-02-25 14:36:05,sell,5190.0,5205.0,"Price testing key support after downtrend, bearish momentum likely to break lower.",sell,5180.0,5215.0,"Established downtrend from 5230 high, targeting liquidity below 5200.",75,5195.0,5190.0,5180.0,5160.0
