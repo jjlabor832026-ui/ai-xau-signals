@@ -148,3 +148,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-25 05:27:21,hold,5212.0,5200.0,Price testing resistance at 5212 with low volume indicating consolidation.,buy,5225.0,5180.0,"Uptrend from 5109.50 remains intact, expecting bullish continuation after pullback.",75,5207.5,5210.0,5220.0,5240.0
 2026-02-25 07:45:40,buy,5224.0,5199.0,Bullish trend with gap support holding after consolidation.,buy,5270.0,5190.0,Strong upward displacement and impulsive move signal continuation.,75,5210.0,5220.0,5240.0,5280.0
 2026-02-25 08:05:40,sell,5191.5,5208.0,Bearish LH/LL structure with declining momentum.,buy,5223.7,5180.0,"Bullish trend intact, pullback to key support zone.",75,5195.0,5192.0,5210.0,5230.0
+2026-02-25 10:44:29,sell,5180.0,5205.0,Lower high rejection with volume sweep below 5190.,buy,5210.0,5160.0,"Impulse up intact, buying on correction at key support.",75,5190.0,5185.0,5180.0,5200.0
