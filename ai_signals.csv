@@ -193,3 +193,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-28 11:56:27,buy,5260.0,5237.0,Sharp drop at support likely stop hunt for bounce.,buy,5300.0,5220.0,"Uptrend intact, correction offers high-conviction entry.",75,5255.0,5265.0,5280.0,5310.0
 2026-02-28 13:50:54,buy,5265.0,5240.0,"Liquidity sweep at key support, bullish order block holds.",buy,5295.0,5225.0,"Strong impulsive displacement up, correction targets higher liquidity.",75,5255.0,5265.0,5280.0,5300.0
 2026-02-28 14:50:21,buy,5265.0,5240.0,Bounce from key support zone after liquidity sweep and bearish exhaustion.,buy,5310.0,5230.0,Bullish trend remains intact with strong impulsive moves and volume confirmation.,75,5255.0,5265.0,5280.0,5300.0
+2026-02-28 15:44:54,sell,5240.0,5265.0,Bearish rejection at 5299 high with sharp drop closing at low.,buy,5290.0,5230.0,Bullish trend intact; buy on dip at key support zone.,75,5240.0,5245.0,5260.0,5280.0
