@@ -198,3 +198,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-28 16:54:53,sell,5235.0,5255.0,Impulsive down move after liquidity sweep targeting support.,sell,5210.0,5299.0,Market structure break indicates trend reversal to lower supports.,75,5245.0,5235.0,5220.0,5210.0
 2026-02-28 17:45:36,sell,5230.0,5260.0,Bearish break of structure after liquidity sweep at highs.,buy,5290.0,5220.0,Correction to key support before resuming uptrend.,75,5242.0,5238.0,5255.0,5300.0
 2026-02-28 17:58:57,buy,5265.0,5240.0,Liquidity sweep at key support suggests imminent bounce.,buy,5290.0,5220.0,Uptrend intact with institutional volume confirmation on impulsive moves.,80,5255.0,5260.0,5275.0,5295.0
+2026-02-28 19:01:36,sell,5230.0,5255.0,Bearish displacement sweep targeting lower liquidity after sharp drop.,sell,5200.0,5270.0,Market structure break with high volume confirmation indicating deeper correction.,75,5245.0,5235.0,5220.0,5200.0
