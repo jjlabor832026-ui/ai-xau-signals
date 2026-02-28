@@ -182,3 +182,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-02-27 21:57:08,sell,5285.0,5305.0,Price at resistance with diminishing volume indicating pullback.,buy,5330.0,5250.0,Strong impulsive move with sustained higher highs and higher lows.,75,5290.0,5300.0,5315.0,5330.0
 2026-02-27 22:56:15,sell,5280.0,5305.0,Resistance rejection with exhaustion signal at daily high.,buy,5320.0,5270.0,Bullish market structure with impulsive moves and higher highs.,75,5290.0,5280.0,5315.0,5340.0
 2026-02-27 23:51:45,buy,5305.0,5280.0,Bullish momentum with higher highs and liquidity sweep above 5299.,buy,5350.0,5270.0,Strong impulsive move from London session breakout supports continued uptrend.,75,5300.0,5310.0,5330.0,5380.0
+2026-02-28 04:38:18,sell,5285.0,5305.0,Resistance at 5300 with volume divergence indicating pullback,buy,5320.0,5270.0,Bullish displacement and HH/HL structure with session volume confirmation,75,5292.5,5295.0,5310.0,5330.0
