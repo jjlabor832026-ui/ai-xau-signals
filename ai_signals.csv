@@ -238,3 +238,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-03-02 22:58:45,sell,5315.0,5348.0,Price rejection at 5360 resistance with declining volume signals weakness.,sell,5270.0,5380.0,Bearish BOS and high-volume displacement confirm institutional selling.,75,5330.0,5320.0,5300.0,5270.0
 2026-03-02 23:55:52,sell,5330.0,5355.0,Price failing at key resistance with low volume momentum.,sell,5300.0,5370.0,Bearish structure confirmed by high-volume sell-offs and liquidity sweeps.,75,5340.0,5330.0,5310.0,5290.0
 2026-03-03 02:38:00,hold,5380.0,5350.0,"Consolidating near resistance, no clear breakout.",hold,5400.0,5330.0,"Recovering from sharp drop, testing key levels.",75,5368.0,5372.0,5385.0,5400.0
+2026-03-03 05:08:26,sell,5360.0,5385.0,Resistance at 5380 with bearish volume confirms selling pressure.,sell,5320.0,5400.0,Impulsive down move from 5432 targets 5320 support zone.,75,5372.0,5360.0,5330.0,5300.0
