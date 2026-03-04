@@ -1,12 +1,7 @@
 name: Update DeepSeek AI Signal
 
 on:
-  schedule:
-    # Every 15 minutes (at :00, :15, :30, :45 of each hour UTC)
-    # To return to every 1 hour later, change this line back to:
-    # - cron: '0 * * * *'    # Every hour on the hour (UTC)
-    - cron: '*/15 * * * *'
-  workflow_dispatch: # Allows manual run
+  workflow_dispatch: # Only runs when triggered manually
 
 jobs:
   update:
