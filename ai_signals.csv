@@ -268,3 +268,4 @@ timestamp,short_term_action,short_term_tp,short_term_sl,short_term_reason,long_t
 2026-03-06 00:40:11,sell,5085.0,5110.0,Resistance test with low volume in bearish trend,sell,5060.0,5120.0,Impulsive downtrend with lower highs and lows,75,5098.0,5090.0,5075.0,5050.0
 2026-03-06 02:45:53,sell,5125.0,5142.5,Retracement from impulse high with weak volume confirmation.,sell,5100.0,5150.0,Bearish market structure resuming after failed rally attempt.,75,5130.0,5125.0,5110.0,5090.0
 2026-03-07 08:32:57,hold,5170.0,5150.0,"Price testing key support at 5158.70, awaiting breakout or bounce confirmation.",buy,5190.0,5150.0,"Uptrend from 5071.00 remains intact, buy on dip to support for higher highs.",75,5162.0,5170.0,5185.0,5200.0
+2026-03-13 08:24:59,buy,5090.0,5070.0,Liquidity sweep at key support suggests imminent bounce.,sell,5050.0,5110.0,"Downtrend intact, sell rallies to resistance zones.",75,5085.0,5095.0,5080.0,5060.0
